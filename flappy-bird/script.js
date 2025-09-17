@@ -4,7 +4,7 @@ const ctx = canvas.getContext("2d");
 const GRAVITY = 0.5;
 const JUMP = -6;
 const PIPE_WIDTH = 50;
-const PIPE_GAP = 120;
+const PIPE_GAP = 145;
 
 let bird = { x: 50, y: 150, width: 20, height: 20, velocity: 0 };
 let pipes = [];
