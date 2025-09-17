@@ -1,8 +1,8 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const GRAVITY = 0.5;
-const JUMP = -8;
+const GRAVITY = 0.4;
+const JUMP = -5;
 const PIPE_WIDTH = 50;
 const PIPE_GAP = 120;
 
