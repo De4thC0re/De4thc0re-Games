@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #faf8ef;
+  text-align: center;
+}
+
+header {
+  background: #bbada0;
+  padding: 15px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+.back-btn {
+  padding: 8px 16px;
+  background: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#gameContainer {
+  margin-top: 20px;
+  display: inline-block;
+  position: relative;
+}
+
+#grid {
+  width: 320px;
+  height: 320px;
+  background: #cdc1b4;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.cell {
+  background: #eee4da;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #776e65;
+  transition: 0.2s;
+}
+
+.cell[data-value="2"] { background: #eee4da; color: #776e65; }
+.cell[data-value="4"] { background: #ede0c8; color: #776e65; }
+.cell[data-value="8"] { background: #f2b179; color: #f9f6f2; }
+.cell[data-value="16"] { background: #f59563; color: #f9f6f2; }
+.cell[data-value="32"] { background: #f67c5f; color: #f9f6f2; }
+.cell[data-value="64"] { background: #f65e3b; color: #f9f6f2; }
+.cell[data-value="128"] { background: #edcf72; color: #f9f6f2; }
+.cell[data-value="256"] { background: #edcc61; color: #f9f6f2; }
+.cell[data-value="512"] { background: #edc850; color: #f9f6f2; }
+.cell[data-value="1024"] { background: #edc53f; color: #f9f6f2; }
+.cell[data-value="2048"] { background: #edc22e; color: #f9f6f2; }
+
+#score {
+  font-size: 20px;
+  margin-top: 10px;
+  color: #776e65;
+}
+
+#gameOverScreen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+#gameOverScreen.hidden {
+  display: none;
+}
+
+#restartBtn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #00ff6a;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
