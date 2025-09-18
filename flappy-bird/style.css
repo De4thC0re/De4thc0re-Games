@@ -38,20 +38,23 @@ canvas {
   background: #111;
   border: 2px solid #0f0;
   border-radius: 10px;
-  margin-top: 20px;
   max-width: 95%;
   height: auto;
 }
 
-.score, .highscore {
+#scoreBoard {
+  display: flex;
+  justify-content: space-around;
+  width: 200px;
   margin-top: 10px;
   font-size: 18px;
 }
 
 #gameOver {
   margin-top: 20px;
-  font-size: 24px;
+  font-size: 32px;
   color: red;
+  text-align: center;
 }
 
 .hidden {
