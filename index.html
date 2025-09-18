@@ -1,46 +1,62 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>De4thC0re Games</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De4thC0re Games</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>🎮 De4thC0re Games</h1>
-  </header>
 
-  <main>
-    <div class="games-grid">
+<header>
+  <nav>
+    <a href="https://de4thc0re.vercel.app" class="nav-link">Główna</a>
+    <a href="#" class="nav-link">GAMES</a>
+  </nav>
+</header>
 
-      <div class="game-card">
-        <img src="https://raw.githubusercontent.com/samuelcust/flappy-bird-assets/master/sprites/yellowbird-midflap.png" alt="Flappy Bird Logo">
-        <a href="/flappy-bird/" class="play-btn">Flappy Bird</a>
-      </div>
+<main>
+  <section class="games-grid">
 
-      <div class="game-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg" alt="2048 Logo">
-        <a href="/2048/" class="play-btn">2048</a>
-      </div>
+    <a href="/flappy-bird" class="game-card">
+      <img src="https://raw.githubusercontent.com/samuelcust/flappy-bird-assets/master/sprites/yellowbird-midflap.png" alt="Flappy Bird">
+      <div class="game-title">Flappy Bird</div>
+      <div class="game-score">Najlepszy wynik: <span id="flappyScore">0</span></div>
+    </a>
 
-      <div class="game-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTkrqimBBmwfHa8urPemFuTpNgCJ2VEMb2ZQ&s" alt="Tetris Logo">
-        <a href="/tetris/" class="play-btn">Tetris</a>
-      </div>
+    <a href="/2048" class="game-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg" alt="2048">
+      <div class="game-title">2048</div>
+      <div class="game-score">Najlepszy wynik: <span id="score2048">0</span></div>
+    </a>
 
-      <div class="game-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpNRl2dfhH9EZw9nNi4b-6tiYqXwh0GiToUQyUliqQ2w&s=10" alt="FPS Logo">
-        <a href="/shooter/" class="play-btn">FPS</a>
-      </div>
+    <a href="/tetris" class="game-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTkrqimBBmwfHa8urPemFuTpNgCJ2VEMb2ZQ&s" alt="Tetris">
+      <div class="game-title">Tetris</div>
+      <div class="game-score">Najlepszy wynik: <span id="tetrisScore">0</span></div>
+    </a>
 
-    </div>
-  </main>
+    <a href="/fps" class="game-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpNRl2dfhH9EZw9nNi4b-6tiYqXwh0GiToUQyUliqQ2w&s=10" alt="FPS">
+      <div class="game-title">FPS</div>
+      <div class="game-score">Najlepszy wynik: <span id="fpsScore">0</span></div>
+    </a>
 
-  <footer>
-    <p>© 2025 De4thC0re</p>
-  </footer>
+    <a href="/snake" class="game-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0NQgLkleSQt_0XQfA7jQxQuhwjUVGZmsBRPjJlWR5bA&s" alt="Snake">
+      <div class="game-title">Snake</div>
+      <div class="game-score">Najlepszy wynik: <span id="snakeScore">0</span></div>
+    </a>
 
-  <script src="script.js"></script>
+    <a href="/dino" class="game-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9IFYFkzCar3rZTgRLT4sujuzPGuBRBKotixRhiqi1gA&s=10" alt="Dino">
+      <div class="game-title">Dino</div>
+      <div class="game-score">Najlepszy wynik: <span id="dinoScore">0</span></div>
+    </a>
+
+  </section>
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>
