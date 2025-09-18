@@ -1,29 +1,30 @@
-body {
+body, html {
   margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
-  background: #70c5ce;
+  background: #0a0a0a;
+  color: #0f0;
   text-align: center;
 }
 
 header {
-  background: #4ec0ca;
   padding: 15px;
-  color: white;
+  background: #111;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
-header h1 {
-  margin: 0;
+.nav-link {
+  color: #0f0;
+  text-decoration: none;
+  font-size: 18px;
+  margin-right: 20px;
 }
 
-.back-btn {
-  padding: 8px 16px;
-  background: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+h1 {
+  margin: 10px 0;
+  flex-grow: 1;
 }
 
 main {
@@ -34,38 +35,40 @@ main {
 }
 
 canvas {
-  border: 2px solid #000;
+  background: #111;
+  border: 2px solid #0f0;
   border-radius: 10px;
+  margin-top: 20px;
+  max-width: 95%;
+  height: auto;
 }
 
-#score {
-  font-size: 20px;
+.score, .highscore {
   margin-top: 10px;
-  color: #000;
+  font-size: 18px;
 }
 
-#gameOverScreen {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0,0,0,0.8);
-  color: white;
-  padding: 30px;
-  border-radius: 12px;
-  text-align: center;
+#gameOver {
+  margin-top: 20px;
+  font-size: 24px;
+  color: red;
 }
 
-#gameOverScreen.hidden {
+.hidden {
   display: none;
 }
 
 #restartBtn {
   padding: 10px 20px;
-  font-size: 16px;
-  background: #00ff6a;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
   margin-top: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #0f0;
+  border: none;
+  border-radius: 5px;
+  color: #000;
+}
+
+#restartBtn:hover {
+  background: #0c0;
 }
