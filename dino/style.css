@@ -1,0 +1,41 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #0a0a0a;
+  color: #0f0;
+  text-align: center;
+}
+
+header {
+  padding: 15px;
+  background: #111;
+}
+
+.nav-link {
+  color: #0f0;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+h1 {
+  margin: 10px 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+canvas {
+  background: #111;
+  border: 2px solid #0f0;
+  border-radius: 10px;
+}
+
+.score, .highscore {
+  margin-top: 10px;
+  font-size: 18px;
+}
