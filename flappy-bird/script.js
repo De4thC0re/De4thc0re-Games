@@ -1,11 +1,16 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
+// dopasowanie canvas do ekranu
+canvas.width = 400;
+canvas.height = 600;
+
 const bird = { x: 50, y: 300, width: 30, height: 30, dy: 0, gravity: 0.6, jump: -10 };
 const pipes = [];
 const pipeGap = 150;
 let frame = 0;
 let score = 0;
+let gameOverFlag = false;
 
 const highScoreKey = 'flappyHighScore';
 let highScore = localStorage.getItem(highScoreKey) || 0;
@@ -24,21 +29,28 @@ function spawnPipe() {
 }
 
 function update() {
+    if (gameOverFlag) return;
+
     bird.dy += bird.gravity;
     bird.y += bird.dy;
 
-    if (bird.y + bird.height > canvas.height) gameOver();
+    if (bird.y + bird.height > canvas.height || bird.y < 0) {
+        endGame();
+    }
 
     frame++;
-
     if (frame % 90 === 0) spawnPipe();
 
     pipes.forEach(pipe => {
         pipe.x -= 3;
 
-        if(frame > 60) { 
-            if (bird.x < pipe.x + pipe.width && bird.x + bird.width > pipe.x &&
-                bird.y < pipe.y + pipe.height && bird.y + bird.height > pipe.y) gameOver();
+        if (
+            bird.x < pipe.x + pipe.width &&
+            bird.x + bird.width > pipe.x &&
+            bird.y < pipe.y + pipe.height &&
+            bird.y + bird.height > pipe.y
+        ) {
+            endGame();
         }
 
         if (pipe.x + pipe.width === bird.x) score++;
@@ -67,23 +79,27 @@ function draw() {
     ctx.fillStyle = "#0f0";
     pipes.forEach(pipe => ctx.fillRect(pipe.x, pipe.y, pipe.width, pipe.height));
 
-    // ekran końcowy
-    if (!gameOverEl.classList.contains('hidden')) {
+    if (gameOverFlag) {
         ctx.fillStyle = "red";
         ctx.font = "40px Arial";
         ctx.textAlign = "center";
-        ctx.fillText("KONIEC GRY", canvas.width/2, canvas.height/2);
+        ctx.fillText("KONIEC GRY", canvas.width / 2, canvas.height / 2);
     }
 }
 
 function gameLoop() {
     update();
     draw();
-    requestAnimationFrame(gameLoop);
+    if (!gameOverFlag) requestAnimationFrame(gameLoop);
 }
 
 function jump() {
-    bird.dy = bird.jump;
+    if (!gameOverFlag) bird.dy = bird.jump;
+}
+
+function endGame() {
+    gameOverFlag = true;
+    gameOverEl.classList.remove('hidden');
 }
 
 // sterowanie PC
@@ -103,14 +119,10 @@ restartBtn.addEventListener('click', () => {
     bird.y = 300;
     bird.dy = 0;
     score = 0;
-    scoreEl.innerText = score;
-    gameOverEl.classList.add('hidden');
     frame = 0;
+    gameOverFlag = false;
+    gameOverEl.classList.add('hidden');
     gameLoop();
 });
-
-function gameOver() {
-    gameOverEl.classList.remove('hidden');
-}
 
 gameLoop();
