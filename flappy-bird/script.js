@@ -6,6 +6,7 @@ const pipes = [];
 const pipeGap = 150;
 let frame = 0;
 let score = 0;
+
 const highScoreKey = 'flappyHighScore';
 let highScore = localStorage.getItem(highScoreKey) || 0;
 
@@ -18,8 +19,8 @@ highScoreEl.innerText = highScore;
 
 function spawnPipe() {
     const topHeight = Math.random() * (canvas.height - pipeGap - 100) + 50;
-    pipes.push({ x: canvas.width, y: 0, width: 50, height: topHeight });
-    pipes.push({ x: canvas.width, y: topHeight + pipeGap, width: 50, height: canvas.height - topHeight - pipeGap });
+    pipes.push({ x: canvas.width + 50, y: 0, width: 50, height: topHeight });
+    pipes.push({ x: canvas.width + 50, y: topHeight + pipeGap, width: 50, height: canvas.height - topHeight - pipeGap });
 }
 
 function update() {
@@ -29,16 +30,23 @@ function update() {
     if (bird.y + bird.height > canvas.height) gameOver();
 
     frame++;
+
     if (frame % 90 === 0) spawnPipe();
 
     pipes.forEach(pipe => {
         pipe.x -= 3;
-        if (bird.x < pipe.x + pipe.width && bird.x + bird.width > pipe.x &&
-            bird.y < pipe.y + pipe.height && bird.y + bird.height > pipe.y) gameOver();
+
+        if(frame > 60) { 
+            if (bird.x < pipe.x + pipe.width && bird.x + bird.width > pipe.x &&
+                bird.y < pipe.y + pipe.height && bird.y + bird.height > pipe.y) gameOver();
+        }
+
         if (pipe.x + pipe.width === bird.x) score++;
     });
 
-    pipes.filter(pipe => pipe.x + pipe.width > 0);
+    // usuwa rury poza ekranem
+    while (pipes.length && pipes[0].x + pipes[0].width < 0) pipes.shift();
+
     scoreEl.innerText = score;
     if (score > highScore) {
         highScore = score;
@@ -51,15 +59,24 @@ function draw() {
     ctx.fillStyle = "#111";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "#0f0";
+    // ptak żółty
+    ctx.fillStyle = "#ff0";
     ctx.fillRect(bird.x, bird.y, bird.width, bird.height);
 
+    // rury zielone
     ctx.fillStyle = "#0f0";
     pipes.forEach(pipe => ctx.fillRect(pipe.x, pipe.y, pipe.width, pipe.height));
+
+    // ekran końcowy
+    if (!gameOverEl.classList.contains('hidden')) {
+        ctx.fillStyle = "red";
+        ctx.font = "40px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText("KONIEC GRY", canvas.width/2, canvas.height/2);
+    }
 }
 
 function gameLoop() {
-    if (!gameOverEl.classList.contains('hidden')) return;
     update();
     draw();
     requestAnimationFrame(gameLoop);
@@ -88,6 +105,7 @@ restartBtn.addEventListener('click', () => {
     score = 0;
     scoreEl.innerText = score;
     gameOverEl.classList.add('hidden');
+    frame = 0;
     gameLoop();
 });
 
